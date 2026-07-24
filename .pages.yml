@@ -1,0 +1,93 @@
+media:
+  input: assets
+  output: /assets
+
+content:
+  - name: site
+    label: SMILEサイト設定
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: members
+        label: 現在のメンバー人数
+        type: number
+        required: true
+
+      - name: recruiting
+        label: メンバー募集中
+        type: boolean
+        default: true
+
+      - name: heroLead
+        label: トップ画面の紹介文
+        type: text
+
+      - name: aboutTitle
+        label: 活動紹介の見出し
+        type: string
+
+      - name: aboutLead
+        label: 活動紹介の大きな文章
+        type: text
+
+      - name: aboutText
+        label: 活動紹介の説明
+        type: text
+
+      - name: saturdayTitle
+        label: 土曜活動の見出し
+        type: string
+
+      - name: saturdayText
+        label: 土曜活動の説明
+        type: text
+
+      - name: weekdayTitle
+        label: 普段の活動の見出し
+        type: string
+
+      - name: weekdayText
+        label: 普段の活動の説明
+        type: text
+
+      - name: joinText
+        label: 入隊案内
+        type: text
+
+      - name: leaderX
+        label: クランリーダーのX URL
+        type: string
+
+      - name: creatorX
+        label: アイコン作者のX URL
+        type: string
+
+      - name: officialX
+        label: COD公式X URL
+        type: string
+
+      - name: newsUrl
+        label: CODニュースURL
+        type: string
+
+      - name: backgroundYoutube
+        label: ロゴ背景用YouTube URL
+        type: string
+        description: 未設定の場合は現在の動く仮背景を表示します
+
+      - name: movies
+        label: MOVIE動画一覧
+        type: object
+        list:
+          min: 1
+          max: 8
+          collapsible: true
+        fields:
+          - name: title
+            label: 動画タイトル
+            type: string
+
+          - name: youtubeUrl
+            label: YouTube URL
+            type: string
