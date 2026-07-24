@@ -149,9 +149,9 @@ async function loadVisitorCounts() {
 
     document.querySelector("#views-today").textContent = todayData.count;
     document.querySelector("#views-month").textContent = monthData.count;
-    document.querySelector("#views-note").textContent = "集計結果は最大約4時間遅れて更新される場合があります";
   } catch {
-    document.querySelector("#views-note").textContent = "閲覧数を取得できませんでした。時間をおいて再読み込みしてください";
+    document.querySelector("#views-today").textContent = "—";
+    document.querySelector("#views-month").textContent = "—";
   }
 }
 
