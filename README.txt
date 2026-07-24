@@ -1,5 +1,9 @@
 SMILEサイト（Pages CMS対応版）
 
+【閲覧数カウンター】
+GoatCounterを利用して「本日の閲覧数」と「今月の閲覧数」を表示します。
+集計先：https://codclansmile.goatcounter.com/
+
 【GitHubへアップロードするもの】
 このフォルダ内の全項目を、smile-clanリポジトリのルートへ上書きアップロードします。
 

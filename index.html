@@ -8,6 +8,8 @@
   <link rel="icon" href="assets/smile-clan-icon.png">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <script data-goatcounter="https://codclansmile.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <main>
@@ -85,6 +87,28 @@
     <div class="movie-player" id="movie-player"></div>
     <div class="movie-list" id="movie-list" aria-label="動画を選択"></div>
     <p class="movie-note">YouTube動画が未設定の項目は、レイアウト確認用の仮表示になります</p>
+  </section>
+
+  <section class="visitor-counter" aria-label="サイト閲覧数" data-reveal>
+    <div class="visitor-counter-inner">
+      <div class="visitor-counter-heading">
+        <p class="section-no">06 — SITE VIEWS</p>
+        <h2>VISITOR<br><em>COUNTER</em></h2>
+      </div>
+      <div class="visitor-counter-stats">
+        <div>
+          <small>TODAY</small>
+          <b id="views-today" aria-live="polite">—</b>
+          <span>本日の閲覧数</span>
+        </div>
+        <div>
+          <small>THIS MONTH</small>
+          <b id="views-month" aria-live="polite">—</b>
+          <span>今月の閲覧数</span>
+        </div>
+      </div>
+      <p class="visitor-counter-note" id="views-note">閲覧数を読み込んでいます</p>
+    </div>
   </section>
 
   <section class="credits" aria-label="SMILEクラン関連リンク">

@@ -121,3 +121,38 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 document.querySelectorAll("[data-reveal]").forEach((item) => observer.observe(item));
+
+const localDate = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+async function loadVisitorCounts() {
+  const today = new Date();
+  const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+  const endpoint = "https://codclansmile.goatcounter.com/counter/TOTAL.json";
+
+  try {
+    const [todayResponse, monthResponse] = await Promise.all([
+      fetch(`${endpoint}?start=${localDate(today)}`, { cache: "no-store" }),
+      fetch(`${endpoint}?start=${localDate(monthStart)}`, { cache: "no-store" })
+    ]);
+
+    if (!todayResponse.ok || !monthResponse.ok) throw new Error("Counter unavailable");
+
+    const [todayData, monthData] = await Promise.all([
+      todayResponse.json(),
+      monthResponse.json()
+    ]);
+
+    document.querySelector("#views-today").textContent = todayData.count;
+    document.querySelector("#views-month").textContent = monthData.count;
+    document.querySelector("#views-note").textContent = "集計結果は最大約4時間遅れて更新される場合があります";
+  } catch {
+    document.querySelector("#views-note").textContent = "閲覧数を取得できませんでした。時間をおいて再読み込みしてください";
+  }
+}
+
+loadVisitorCounts();
