@@ -46,10 +46,10 @@ footer{min-height:105px;padding:25px max(28px,calc((100vw - 1280px)/2));display:
 }
 
 /* Square SMILE logo */
-.hero-mark{width:clamp(270px,32vw,430px);height:clamp(270px,32vw,430px);margin-bottom:-72px}
-.hero-mark img{width:82%;height:82%}
-@media(max-width:800px){.hero-mark{width:280px;height:280px;margin-bottom:-52px}.join>img{padding:8% 16%}}
-@media(max-width:480px){.hero-mark{width:245px;height:245px;margin-bottom:-44px}.join>img{height:320px;padding:7% 13%}}
+.hero-mark{width:clamp(250px,29.5vw,395px);height:clamp(250px,29.5vw,395px);margin-bottom:-34px;transform:translateY(-12px)}
+.hero-mark img{width:76%;height:76%}
+@media(max-width:800px){.hero-mark{width:258px;height:258px;margin-bottom:-24px;transform:translateY(-8px)}.join>img{padding:8% 16%}}
+@media(max-width:480px){.hero-mark{width:226px;height:226px;margin-bottom:-18px;transform:translateY(-6px)}.join>img{height:320px;padding:7% 13%}}
 
 .hero h1.hero-slogan{font-size:clamp(40px,5.4vw,82px);line-height:.9;letter-spacing:-.055em}
 @media(max-width:800px){.hero h1.hero-slogan{font-size:clamp(36px,9.5vw,52px)}}
