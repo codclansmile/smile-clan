@@ -45,11 +45,11 @@ footer{min-height:105px;padding:25px max(28px,calc((100vw - 1280px)/2));display:
   .about h2{width:auto;white-space:nowrap}
 }
 
-/* Wide-format SMILE logo */
-.hero-mark{width:clamp(360px,45vw,650px);height:clamp(210px,25vw,360px);margin-bottom:8px}
-.hero-mark img{width:90%;height:90%}
-@media(max-width:800px){.hero-mark{width:min(92vw,500px);height:min(52vw,280px);margin-bottom:12px}.join>img{padding:6%}}
-@media(max-width:480px){.hero-mark{width:94vw;height:53vw;margin-bottom:14px}.join>img{height:300px;padding:5%}}
+/* Square SMILE logo */
+.hero-mark{width:clamp(270px,32vw,430px);height:clamp(270px,32vw,430px);margin-bottom:-72px}
+.hero-mark img{width:82%;height:82%}
+@media(max-width:800px){.hero-mark{width:280px;height:280px;margin-bottom:-52px}.join>img{padding:8% 16%}}
+@media(max-width:480px){.hero-mark{width:245px;height:245px;margin-bottom:-44px}.join>img{height:320px;padding:7% 13%}}
 
 .hero h1.hero-slogan{font-size:clamp(40px,5.4vw,82px);line-height:.9;letter-spacing:-.055em}
 @media(max-width:800px){.hero h1.hero-slogan{font-size:clamp(36px,9.5vw,52px)}}
