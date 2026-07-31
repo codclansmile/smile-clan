@@ -25,6 +25,11 @@ const fallback = {
   youtubeChannelUrl: "https://www.youtube.com/@Sfkln"
 };
 
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.addEventListener("pageshow", () => {
+  requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: "auto" }));
+});
+
 const text = (selector, value) => {
   document.querySelectorAll(selector).forEach((element) => {
     element.textContent = value ?? "";
@@ -77,31 +82,102 @@ function renderYoutubePlayer(player, url, title, emptyLabel) {
   player.append(empty);
 }
 
-function renderLivePlayer(data) {
-  const player = document.querySelector("#live-player");
-  const directId = youtubeId(data.liveYoutubeUrl);
+let livePlayer;
+let liveApiPromise;
+
+function setLiveState(isLive) {
+  const card = document.querySelector("[data-live-card]");
+  if (!card) return;
+  card.classList.toggle("is-live", isLive);
+  card.classList.toggle("is-offline", !isLive);
+}
+
+function showOffline(player) {
+  setLiveState(false);
   player.replaceChildren();
-  if (directId) {
-    renderYoutubePlayer(player, data.liveYoutubeUrl, data.liveTitle, "LIVE STREAM");
-    return;
-  }
-  if (String(data.youtubeChannelId || "").startsWith("UC")) {
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube-nocookie.com/embed/live_stream?channel=${encodeURIComponent(data.youtubeChannelId)}&rel=0`;
-    iframe.title = data.liveTitle;
-    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
-    iframe.allowFullscreen = true;
-    player.append(iframe);
-    return;
-  }
   const empty = document.createElement("div");
   empty.className = "media-empty live-empty";
   const status = document.createElement("strong");
   status.textContent = "OFFLINE";
   const label = document.createElement("small");
-  label.textContent = "現在LIVE配信はありません";
+  label.textContent = "現在、LIVE配信はしておりません";
   empty.append(status, label);
   player.append(empty);
+}
+
+function loadYoutubeIframeApi() {
+  if (window.YT?.Player) return Promise.resolve(window.YT);
+  if (liveApiPromise) return liveApiPromise;
+  liveApiPromise = new Promise((resolve) => {
+    const previous = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      if (typeof previous === "function") previous();
+      resolve(window.YT);
+    };
+    const script = document.createElement("script");
+    script.src = "https://www.youtube.com/iframe_api";
+    script.async = true;
+    document.head.append(script);
+  });
+  return liveApiPromise;
+}
+
+async function renderChannelLivePlayer(player, data) {
+  const mount = document.createElement("div");
+  mount.id = "youtube-live-player";
+  player.append(mount);
+  try {
+    const YT = await loadYoutubeIframeApi();
+    livePlayer?.destroy?.();
+    livePlayer = new YT.Player(mount, {
+      width: "100%",
+      height: "100%",
+      videoId: "live_stream",
+      playerVars: {
+        channel: data.youtubeChannelId,
+        rel: 0,
+        playsinline: 1
+      },
+      events: {
+        onReady: (event) => {
+          const videoId = event.target.getVideoData?.().video_id;
+          if (videoId) setLiveState(true);
+          else showOffline(player);
+        },
+        onStateChange: (event) => {
+          if (event.data === YT.PlayerState.PLAYING ||
+              event.data === YT.PlayerState.BUFFERING ||
+              event.data === YT.PlayerState.CUED) {
+            setLiveState(true);
+          }
+        },
+        onError: () => showOffline(player)
+      }
+    });
+    window.setTimeout(() => {
+      const videoId = livePlayer?.getVideoData?.().video_id;
+      if (!videoId) showOffline(player);
+    }, 8000);
+  } catch {
+    showOffline(player);
+  }
+}
+
+function renderLivePlayer(data) {
+  const player = document.querySelector("#live-player");
+  const directId = youtubeId(data.liveYoutubeUrl);
+  setLiveState(false);
+  player.replaceChildren();
+  if (directId) {
+    renderYoutubePlayer(player, data.liveYoutubeUrl, data.liveTitle, "LIVE STREAM");
+    setLiveState(true);
+    return;
+  }
+  if (String(data.youtubeChannelId || "").startsWith("UC")) {
+    renderChannelLivePlayer(player, data);
+    return;
+  }
+  showOffline(player);
 }
 
 function render(data) {
