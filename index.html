@@ -6,8 +6,8 @@
   <meta name="description" content="Call of Dutyクラン SMILEの公式サイト">
   <title>SMILE | Call of Duty Clan</title>
   <link rel="icon" href="assets/smile-clan-icon.png?v=20260730">
-  <link rel="stylesheet" href="style.css?v=20260730-2">
-  <script src="script.js?v=20260724-2" defer></script>
+  <link rel="stylesheet" href="style.css?v=20260731-1">
+  <script src="script.js?v=20260731-1" defer></script>
   <script data-goatcounter="https://codclansmile.goatcounter.com/count"
           async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -87,11 +87,31 @@
   </section>
 
   <section class="movie wrap" id="movie" data-reveal>
-    <p class="section-no">05 — CLAN MOVIES</p>
-    <div class="movie-head"><h2>PLAY THE<br><em>MOMENTS</em></h2><p>SMILEのプレイ動画やプラベの様子を公開<br>動画を選ぶと、このページ内で再生できます</p></div>
-    <div class="movie-player" id="movie-player"></div>
-    <div class="movie-list" id="movie-list" aria-label="動画を選択"></div>
-    <p class="movie-note">YouTube動画が未設定の項目は、レイアウト確認用の仮表示になります</p>
+    <p class="section-no">05 — SMILE ON YOUTUBE</p>
+    <div class="movie-head"><h2>WATCH.<br><em>JOIN. SMILE.</em></h2><p>好プレイをまとめたクリップ、現在のLIVE配信、<br>SMILEのYouTubeチャンネルをここからチェック</p></div>
+    <div class="media-grid">
+      <article class="media-card media-clips">
+        <div class="media-card-head"><span>01</span><div><small>HIGHLIGHT MOVIE</small><h3>CLIPS</h3></div></div>
+        <div class="media-frame" id="clips-player"></div>
+        <div class="media-copy"><b data-clips-title>SMILE HIGHLIGHTS</b><p>SMILEメンバーの好プレイや面白い場面をまとめたクリップ集。</p></div>
+      </article>
+      <article class="media-card media-live">
+        <div class="media-card-head"><span>02</span><div><small>LIVE STREAM</small><h3>LIVE</h3></div><i class="live-dot" aria-hidden="true"></i></div>
+        <div class="media-frame" id="live-player"></div>
+        <div class="media-copy"><b data-live-title>SMILE LIVE</b><p>配信中は、この枠からSMILEサイト上でそのまま視聴できます。</p></div>
+      </article>
+      <article class="media-card media-channel">
+        <div class="media-card-head"><span>03</span><div><small>OFFICIAL CHANNEL</small><h3>YOUTUBE</h3></div></div>
+        <div class="channel-panel">
+          <img src="assets/smile-clan-icon.png?v=20260730" alt="">
+          <small>SMILE / CALL OF DUTY CLAN</small>
+          <h3 data-channel-name>SMILE YouTube Channel</h3>
+          <p data-channel-description>クリップ集や配信アーカイブを公開予定。チャンネル登録して最新動画をチェック。</p>
+          <a data-channel-url href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">チャンネルを見る <span>↗</span></a>
+        </div>
+      </article>
+    </div>
+    <p class="movie-note">YouTube情報はPages CMSの「SMILEサイト設定」から変更できます</p>
   </section>
 
   <section class="visitor-counter" aria-label="サイト閲覧数" data-reveal>

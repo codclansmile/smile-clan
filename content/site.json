@@ -15,18 +15,12 @@
   "officialX": "https://x.com/CallofDutyJP",
   "newsUrl": "https://fpsjp.net/?s=Call+of+Duty",
   "backgroundYoutube": "",
-  "movies": [
-    {
-      "title": "SMILE HIGHLIGHTS",
-      "youtubeUrl": ""
-    },
-    {
-      "title": "PRIVATE MATCH",
-      "youtubeUrl": ""
-    },
-    {
-      "title": "FUNNY MOMENTS",
-      "youtubeUrl": ""
-    }
-  ]
+  "clipsTitle": "SMILE HIGHLIGHTS",
+  "clipsYoutubeUrl": "",
+  "liveTitle": "SMILE LIVE",
+  "liveYoutubeUrl": "",
+  "youtubeChannelId": "UCtsk5uEDOyEKsMW1UNTZv3w",
+  "youtubeChannelName": "ノンスリファ【ノン】",
+  "youtubeChannelDescription": "ライブ配信や動画はこちらのYouTubeチャンネルからチェック。",
+  "youtubeChannelUrl": "https://www.youtube.com/@Sfkln"
 }

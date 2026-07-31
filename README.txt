@@ -18,5 +18,10 @@ GoatCounterを利用して「本日の閲覧数」と「今月の閲覧数」を
 YouTubeの通常URL、短縮URL、Shorts URLに対応しています。
 背景動画はブラウザの制限によりミュートで自動再生します。
 
+【YouTube欄】
+Pages CMSから、クリップ集・LIVE・チャンネル紹介を変更できます。
+LIVE配信URLが空欄でチャンネルIDが設定されている場合は、YouTubeのチャンネルLIVEプレーヤーを表示します。
+チャンネルIDも空欄の場合は、配信待機中の仮表示になります。
+
 【注意】
 content/site.json と .pages.yml は削除しないでください。

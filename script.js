@@ -15,7 +15,14 @@ const fallback = {
   officialX: "https://x.com/CallofDutyJP",
   newsUrl: "https://fpsjp.net/?s=Call+of+Duty",
   backgroundYoutube: "",
-  movies: [{ title: "SMILE HIGHLIGHTS", youtubeUrl: "" }]
+  clipsTitle: "SMILE HIGHLIGHTS",
+  clipsYoutubeUrl: "",
+  liveTitle: "SMILE LIVE",
+  liveYoutubeUrl: "",
+  youtubeChannelId: "UCtsk5uEDOyEKsMW1UNTZv3w",
+  youtubeChannelName: "ノンスリファ【ノン】",
+  youtubeChannelDescription: "ライブ配信や動画はこちらのYouTubeチャンネルからチェック。",
+  youtubeChannelUrl: "https://www.youtube.com/@Sfkln"
 };
 
 const text = (selector, value) => {
@@ -47,15 +54,54 @@ const youtubeId = (url) => {
   }
 };
 
-function renderMovie(movie, index) {
-  const id = youtubeId(movie.youtubeUrl);
-  const player = document.querySelector("#movie-player");
-  const title = movie.title || `CLAN MOVIE ${String(index + 1).padStart(2, "0")}`;
+function renderYoutubePlayer(player, url, title, emptyLabel) {
+  const id = youtubeId(url);
+  player.replaceChildren();
   if (id) {
-    player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0" title="${title.replaceAll('"', "&quot;")}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-  } else {
-    player.innerHTML = `<div class="movie-visual movie-visual-${(index % 3) + 1}"><span class="movie-grid"></span><span class="movie-number">${String(index + 1).padStart(2, "0")}</span><span class="play-button"><i></i></span><div class="movie-caption"><small>NOW SELECTED</small><b>${title}</b></div><span class="test-badge">YOUTUBE VIDEO / COMING SOON</span></div>`;
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?rel=0`;
+    iframe.title = title;
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    player.append(iframe);
+    return;
   }
+  const empty = document.createElement("div");
+  empty.className = "media-empty";
+  const icon = document.createElement("span");
+  icon.className = "media-empty-icon";
+  icon.textContent = "▶";
+  const label = document.createElement("small");
+  label.textContent = emptyLabel;
+  empty.append(icon, label);
+  player.append(empty);
+}
+
+function renderLivePlayer(data) {
+  const player = document.querySelector("#live-player");
+  const directId = youtubeId(data.liveYoutubeUrl);
+  player.replaceChildren();
+  if (directId) {
+    renderYoutubePlayer(player, data.liveYoutubeUrl, data.liveTitle, "LIVE STREAM");
+    return;
+  }
+  if (String(data.youtubeChannelId || "").startsWith("UC")) {
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube-nocookie.com/embed/live_stream?channel=${encodeURIComponent(data.youtubeChannelId)}&rel=0`;
+    iframe.title = data.liveTitle;
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    player.append(iframe);
+    return;
+  }
+  const empty = document.createElement("div");
+  empty.className = "media-empty live-empty";
+  const status = document.createElement("strong");
+  status.textContent = "OFFLINE";
+  const label = document.createElement("small");
+  label.textContent = "現在LIVE配信はありません";
+  empty.append(status, label);
+  player.append(empty);
 }
 
 function render(data) {
@@ -82,23 +128,18 @@ function render(data) {
     document.querySelector(".hero-video").classList.add("has-youtube");
   }
 
-  const movies = Array.isArray(data.movies) && data.movies.length ? data.movies : fallback.movies;
-  const list = document.querySelector("#movie-list");
-  list.replaceChildren();
-  movies.forEach((movie, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = index === 0 ? "active" : "";
-    button.innerHTML = `<span class="movie-thumb movie-thumb-${(index % 3) + 1}"><i>${String(index + 1).padStart(2, "0")}</i></span><span><small>YOUTUBE VIDEO / ${String(index + 1).padStart(2, "0")}</small><b></b></span><i>↗</i>`;
-    button.querySelector("b").textContent = movie.title || `CLAN MOVIE ${index + 1}`;
-    button.addEventListener("click", () => {
-      list.querySelectorAll("button").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-      renderMovie(movie, index);
-    });
-    list.append(button);
-  });
-  renderMovie(movies[0], 0);
+  text("[data-clips-title]", data.clipsTitle);
+  text("[data-live-title]", data.liveTitle);
+  text("[data-channel-name]", data.youtubeChannelName);
+  text("[data-channel-description]", data.youtubeChannelDescription);
+  document.querySelector("[data-channel-url]").href = data.youtubeChannelUrl || "https://www.youtube.com/";
+  renderYoutubePlayer(
+    document.querySelector("#clips-player"),
+    data.clipsYoutubeUrl,
+    data.clipsTitle,
+    "CLIPS / COMING SOON"
+  );
+  renderLivePlayer(data);
 }
 
 fetch("./content/site.json", { cache: "no-store" })
