@@ -13,81 +13,99 @@ content:
         label: 現在のメンバー人数
         type: number
         required: true
-
       - name: recruiting
         label: メンバー募集中
         type: boolean
         default: true
-
       - name: heroLead
         label: トップ画面の紹介文
         type: text
-
+        required: false
       - name: aboutTitle
         label: 活動紹介の見出し
         type: string
-
+        required: false
       - name: aboutLead
         label: 活動紹介の大きな文章
         type: text
-
+        required: false
       - name: aboutText
         label: 活動紹介の説明
         type: text
-
+        required: false
       - name: saturdayTitle
         label: 土曜活動の見出し
         type: string
-
+        required: false
       - name: saturdayText
         label: 土曜活動の説明
         type: text
-
+        required: false
       - name: weekdayTitle
         label: 普段の活動の見出し
         type: string
-
+        required: false
       - name: weekdayText
         label: 普段の活動の説明
         type: text
-
+        required: false
       - name: joinText
         label: 入隊案内
         type: text
-
+        required: false
       - name: leaderX
         label: クランリーダーのX URL
         type: string
-
+        required: false
       - name: creatorX
         label: アイコン作者のX URL
         type: string
-
+        required: false
       - name: officialX
         label: COD公式X URL
         type: string
-
+        required: false
       - name: newsUrl
         label: CODニュースURL
         type: string
-
+        required: false
       - name: backgroundYoutube
         label: ロゴ背景用YouTube URL
         type: string
+        required: false
         description: 未設定の場合は現在の動く仮背景を表示します
-
-      - name: movies
-        label: MOVIE動画一覧
-        type: object
-        list:
-          min: 1
-          max: 8
-          collapsible: true
-        fields:
-          - name: title
-            label: 動画タイトル
-            type: string
-
-          - name: youtubeUrl
-            label: YouTube URL
-            type: string
+      - name: clipsTitle
+        label: クリップ集のタイトル
+        type: string
+        required: false
+      - name: clipsYoutubeUrl
+        label: クリップ集のYouTube URL
+        type: string
+        required: false
+        description: 通常動画・短縮URL・Shortsに対応します
+      - name: liveTitle
+        label: LIVE枠のタイトル
+        type: string
+        required: false
+      - name: liveYoutubeUrl
+        label: LIVE配信のYouTube URL（任意）
+        type: string
+        required: false
+        description: 特定の配信を優先表示したい場合に入力します
+      - name: youtubeChannelId
+        label: YouTubeチャンネルID
+        type: string
+        required: false
+        description: UCから始まるID。チャンネルのLIVEプレーヤーに使用します
+      - name: youtubeChannelName
+        label: YouTubeチャンネル名
+        type: string
+        required: false
+      - name: youtubeChannelDescription
+        label: YouTubeチャンネル紹介文
+        type: text
+        required: false
+      - name: youtubeChannelUrl
+        label: YouTubeチャンネルURL
+        type: string
+        required: false
