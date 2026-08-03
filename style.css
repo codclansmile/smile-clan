@@ -46,13 +46,18 @@ footer{min-height:105px;padding:25px max(28px,calc((100vw - 1280px)/2));display:
 }
 
 /* Square SMILE logo */
-.hero-mark{width:clamp(250px,29.5vw,395px);height:clamp(250px,29.5vw,395px);margin-bottom:-34px;transform:translateY(-12px)}
+.hero-mark{width:clamp(250px,29.5vw,395px);height:clamp(250px,29.5vw,395px);margin-bottom:24px;transform:translateY(-12px)}
 .hero-mark img{width:76%;height:76%}
-@media(max-width:800px){.hero-mark{width:258px;height:258px;margin-bottom:-24px;transform:translateY(-8px)}.join>img{padding:8% 16%}}
-@media(max-width:480px){.hero-mark{width:226px;height:226px;margin-bottom:-18px;transform:translateY(-6px)}.join>img{height:320px;padding:7% 13%}}
+@media(max-width:800px){.hero-mark{width:258px;height:258px;margin-bottom:22px;transform:translateY(-8px)}.join>img{padding:8% 16%}}
+@media(max-width:480px){.hero-mark{width:226px;height:226px;margin-bottom:20px;transform:translateY(-6px)}.join>img{height:320px;padding:7% 13%}}
 
 .hero h1.hero-slogan{font-size:clamp(40px,5.4vw,82px);line-height:.9;letter-spacing:-.055em}
-@media(max-width:800px){.hero h1.hero-slogan{font-size:clamp(36px,9.5vw,52px)}}
+.hero-slogan .slogan-top{display:flex;align-items:baseline;justify-content:center;gap:.12em;white-space:nowrap;color:#f7f5ef;-webkit-text-stroke:0}
+.hero-slogan .slogan-top .slogan-play{color:transparent;-webkit-text-stroke:1px #777}
+.hero-slogan .slogan-top .slogan-laugh{color:#f7f5ef;-webkit-text-stroke:0}
+.hero-slogan em{display:block}
+@media(max-width:800px){.hero h1.hero-slogan{font-size:clamp(34px,9.2vw,48px);letter-spacing:-.045em}.hero-slogan .slogan-top{gap:.14em}}
+@media(max-width:480px){.hero h1.hero-slogan{font-size:clamp(32px,9vw,42px);letter-spacing:-.04em}.hero-slogan .slogan-top{gap:.16em}}
 
 /* Keep the rotating orbit visible outside the wide, black-backed logo. */
 .hero-mark .orbit{z-index:3;inset:3% -3%;border-color:rgba(244,207,24,.48);pointer-events:none}
