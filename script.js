@@ -9,8 +9,10 @@ const fallback = {
   saturdayText: "毎週土曜日はクランメンバーでプライベートマッチを開催。ふざけながら楽しむ日も、本気で勝負する日もあります。",
   weekdayTitle: "普段の活動",
   weekdayText: "平日の夜等は最新作を中心に、公開マッチやランクプレイを楽しんでいます。",
-  joinText: "全プラットフォーム対応。詳しい入隊条件はDM・面談でお伝えします。",
-  leaderX: "https://x.com/Straight_Flush0",
+  joinText: "全プラットフォーム対応。入隊希望やご質問はSMILE公式XのDMからお問い合わせください。",
+  leaderName: "ヒロ",
+  clanX: "https://x.com/_SMILECLAN_",
+  clanXHandle: "@_SMILECLAN_",
   creatorX: "https://x.com/nosuri113",
   officialX: "https://x.com/CallofDutyJP",
   newsUrl: "https://fpsjp.net/?s=Call+of+Duty",
@@ -192,7 +194,9 @@ function render(data) {
   text("[data-weekday-title]", data.weekdayTitle);
   text("[data-weekday-text]", data.weekdayText);
   text("[data-join-text]", data.joinText);
-  document.querySelectorAll("[data-leader-x]").forEach((a) => a.href = data.leaderX);
+  text("[data-leader-name]", data.leaderName);
+  text("[data-clan-x-handle]", data.clanXHandle);
+  document.querySelectorAll("[data-clan-x]").forEach((a) => a.href = data.clanX);
   document.querySelector("[data-creator-x]").href = data.creatorX;
   document.querySelector("[data-official-x]").href = data.officialX;
   document.querySelector("[data-news-url]").href = data.newsUrl;
