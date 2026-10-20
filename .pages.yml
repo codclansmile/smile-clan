@@ -53,8 +53,16 @@ content:
         label: 入隊案内
         type: text
         required: false
-      - name: leaderX
-        label: クランリーダーのX URL
+      - name: leaderName
+        label: クランマスター名
+        type: string
+        required: false
+      - name: clanX
+        label: SMILE公式X URL
+        type: string
+        required: false
+      - name: clanXHandle
+        label: SMILE公式X アカウント名
         type: string
         required: false
       - name: creatorX
